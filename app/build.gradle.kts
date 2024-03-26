@@ -50,6 +50,11 @@ android {
 }
 
 dependencies {
+    
+
+    // Navigation
+    val navVersion = "2.7.6"
+    implementation ("androidx.navigation:navigation-compose:$navVersion")
 
     // For swiping
     implementation("androidx.compose.material:material:1.5.4")

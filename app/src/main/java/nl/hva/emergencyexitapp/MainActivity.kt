@@ -11,7 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import nl.hva.emergencyexitapp.ui.theme.EmergencyExitAppTheme
+import nl.hva.emergencyexitapp.ui.theme.screens.AppScreens
+import nl.hva.emergencyexitapp.ui.theme.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,5 +49,23 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     EmergencyExitAppTheme {
         Greeting("Android")
+    }
+}
+
+/**
+ * You can see this as a nav_graph.xml in compose environment.
+ */
+@Composable
+private fun RemindersNavHost(
+    navController: NavHostController, modifier: Modifier
+) {
+    NavHost(
+        navController = navController,
+        startDestination = AppScreens.HomeScreen.name,
+        modifier = modifier
+    ) {
+        composable(route = AppScreens.HomeScreen.name) {
+            HomeScreen(navController)
+        }
     }
 }
