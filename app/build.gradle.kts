@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -50,7 +51,25 @@ android {
 }
 
 dependencies {
-    
+    val room_version = "2.6.0"
+    val liveDataVersion = "1.3.0-rc01"
+
+    // Live data
+    implementation("androidx.compose.runtime:runtime-livedata:$liveDataVersion")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
+
+
+    // Room
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
+    // Bottom nav
+    implementation("androidx.compose.material:material:1.5.4")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
 
     // Navigation
     val navVersion = "2.7.6"

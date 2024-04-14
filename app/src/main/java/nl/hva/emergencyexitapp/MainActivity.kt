@@ -108,7 +108,10 @@ fun BottomNav(navController: NavHostController) {
         AppScreens.HomeScreen,
         AppScreens.SearchScreen,
     )
-    BottomNavigation {
+    BottomNavigation(
+        modifier = Modifier,
+        backgroundColor = coralPink
+    ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
         items.forEach { screen ->
@@ -121,6 +124,8 @@ fun BottomNav(navController: NavHostController) {
                 },
                 label = { Text(stringResource(screen.resourceId)) },
                 selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                selectedContentColor = white,
+                unselectedContentColor = coralPink,
                 onClick = {
                     navController.navigate(screen.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
