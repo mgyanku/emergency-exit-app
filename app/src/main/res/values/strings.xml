@@ -10,8 +10,8 @@
     <string name="situation_widget_button_instructions">Instructions</string>
     <string name="situation_widget_button_help">/?</string>
 
-
-
-
     <string name="speed_dial_widget_title">Speed dial</string>
+
+    <string name="search_title">Search</string>
+
 </resources>

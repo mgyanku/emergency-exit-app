@@ -32,6 +32,7 @@ import nl.hva.emergencyexitapp.ui.theme.EmergencyExitAppTheme
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.ui.theme.screens.AppScreens
 import nl.hva.emergencyexitapp.ui.theme.screens.HomeScreen
+import nl.hva.emergencyexitapp.ui.theme.screens.SearchScreen
 import nl.hva.emergencyexitapp.ui.theme.white
 
 class MainActivity : ComponentActivity() {
@@ -98,6 +99,9 @@ private fun AppNavHost(
     ) {
         composable(route = AppScreens.HomeScreen.route) {
             HomeScreen(navController)
+        }
+        composable(route = AppScreens.SearchScreen.route) {
+            SearchScreen(navController)
         }
     }
 }
