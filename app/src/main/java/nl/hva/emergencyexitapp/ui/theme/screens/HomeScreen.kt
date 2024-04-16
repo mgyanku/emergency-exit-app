@@ -1,6 +1,9 @@
 package nl.hva.emergencyexitapp.ui.theme.screens
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -23,6 +27,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import nl.hva.emergencyexitapp.ui.theme.EmergencyExitAppTheme
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -34,6 +40,8 @@ import nl.hva.emergencyexitapp.ui.theme.coralPink
 
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
+    val context = LocalContext.current
+
 
     Column(
         modifier = Modifier
@@ -67,7 +75,7 @@ fun HomeScreen(navHostController: NavHostController) {
                 Button(
                     onClick = {
                         navHostController.navigate("${AppScreens.InstructionScreen.route}/4")
-                              },
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = coralPink
                     ),
@@ -96,27 +104,51 @@ fun HomeScreen(navHostController: NavHostController) {
                 Spacer(Modifier.padding(10.dp))
                 Row {
                     CircularButton(
-                        onClick = { /* Handle button click */ }
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_DIAL).apply {
+                                data = Uri.parse("tel:0900-8844")
+                            }
+                            context.startActivity(intent)
+                        }
                     ) {
-                        Text(
-                            text = "1#",
-                            fontSize = 16.sp
+                        Image(
+                            painter = painterResource(id = R.drawable.ambulance),
+                            contentDescription = "ambulance", // decorative element
+                            modifier = Modifier
+                                .width(50.dp)
+                                .height(50.dp)
                         )
                     }
                     CircularButton(
-                        onClick = { /* Handle button click */ }
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_DIAL).apply {
+                                data = Uri.parse("tel:0900-8844")
+                            }
+                            context.startActivity(intent)
+                        }
                     ) {
-                        Text(
-                            text = "2#",
-                            fontSize = 16.sp
+                        Image(
+                            painter = painterResource(id = R.drawable.police),
+                            contentDescription = "police", // decorative element
+                            modifier = Modifier
+                                .width(50.dp)
+                                .height(50.dp)
                         )
                     }
                     CircularButton(
-                        onClick = { /* Handle button click */ }
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_DIAL).apply {
+                                data = Uri.parse("tel:0900-8844")
+                            }
+                            context.startActivity(intent)
+                        }
                     ) {
-                        Text(
-                            text = "3#",
-                            fontSize = 16.sp
+                        Image(
+                            painter = painterResource(id = R.drawable.firefighter),
+                            contentDescription = "firemen", // decorative element
+                            modifier = Modifier
+                                .width(50.dp)
+                                .height(50.dp)
                         )
                     }
                 }
