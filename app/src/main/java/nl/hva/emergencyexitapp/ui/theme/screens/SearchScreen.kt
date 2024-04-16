@@ -107,14 +107,14 @@ fun SearchScreen(navHostController: NavHostController, viewModel: SituationViewM
 //            list of items
             Column {
                 Situations(items = situations, viewModel = viewModel,
-                    searchQuery = searchQueryState.value.text)
+                    searchQuery = searchQueryState.value.text, navHostController)
             }
         }
     }
 }
 
 @Composable
-fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel, searchQuery: String) {
+fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel, searchQuery: String, navHostController: NavHostController) {
     // sort results by name ( a - z )
     val situationResults = items.observeAsState().value
         ?.filter { it.title.contains(searchQuery, ignoreCase = true) }
@@ -126,16 +126,18 @@ fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel, 
     ) {
         situationResults?.let { results ->
             items(results) { situation ->
-                ResultItem(item = situation)
+                ResultItem(item = situation, navHostController = navHostController)
             }
         }
     }
 }
 
 @Composable
-fun ResultItem(item: Situation) {
+fun ResultItem(item: Situation, navHostController: NavHostController) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+                  navHostController.navigate("${AppScreens.InstructionScreen.route}/$item.id")
+                  },
         colors = ButtonDefaults.buttonColors(
             containerColor = coralPink
         ),

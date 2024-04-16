@@ -18,6 +18,8 @@ interface SituationDao {
         return MutableLiveData(dummySituationData)
     }
 
+
+
     @Insert
     suspend fun insert(item: Situation)
 
@@ -35,7 +37,7 @@ interface SituationDao {
 
 // Dummy data
 val dummySituationData = listOf(
-    Situation(id = 1, title = "Situation", instruction = "Description"),
+    Situation(id = 1, title = "Air strike", instruction = "Hide."),
 
     Situation (id = 2, title = "Earthquake", instruction = "Drop down onto your hands and knees to prevent being knocked over.\n" +
             "Cover your head and neck with your arms to protect yourself from falling debris.\n" +

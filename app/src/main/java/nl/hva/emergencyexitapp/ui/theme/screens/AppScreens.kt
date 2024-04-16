@@ -10,5 +10,5 @@ sealed class AppScreens (
 ) {
     object HomeScreen: AppScreens("home_screen", R.string.home , R.drawable.home)
     object SearchScreen: AppScreens("search_screen", R.string.search , R.drawable.search)
-
+    object InstructionScreen: AppScreens("instruction_screen", R.string.search , R.drawable.instruction)
 }

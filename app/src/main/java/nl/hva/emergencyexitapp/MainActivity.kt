@@ -29,10 +29,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import nl.hva.emergencyexitapp.data.model.Situation
 import nl.hva.emergencyexitapp.ui.theme.EmergencyExitAppTheme
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.ui.theme.screens.AppScreens
 import nl.hva.emergencyexitapp.ui.theme.screens.HomeScreen
+import nl.hva.emergencyexitapp.ui.theme.screens.InstructionScreen
 import nl.hva.emergencyexitapp.ui.theme.screens.SearchScreen
 import nl.hva.emergencyexitapp.ui.theme.white
 import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
@@ -105,6 +107,15 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         composable(route = AppScreens.SearchScreen.route) {
             SearchScreen(navController, viewModel)
         }
+        composable(route = "${AppScreens.InstructionScreen.route}/{situationId}") { backStackEntry ->
+            val situationId = backStackEntry.arguments?.getInt("situationId")
+            if (situationId != null) {
+                InstructionScreen(navController, viewModel, situationId)
+            } else {
+                // Screen will catch this error
+                InstructionScreen(navController, viewModel, -1)
+            }
+        }
     }
 }
 
@@ -112,8 +123,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
 fun BottomNav(navController: NavHostController) {
     val items = listOf(
         AppScreens.HomeScreen,
-        AppScreens.SearchScreen,
-    )
+        AppScreens.SearchScreen)
     BottomNavigation(
         modifier = Modifier,
         backgroundColor = coralPink
