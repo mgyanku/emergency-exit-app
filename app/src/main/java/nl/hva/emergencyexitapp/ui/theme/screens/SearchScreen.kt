@@ -122,8 +122,7 @@ fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel, 
 
     LazyColumn(
         modifier = Modifier
-            .padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(1.dp)
+            .padding(8.dp)
     ) {
         situationResults?.let { results ->
             items(results) { situation ->
@@ -141,7 +140,7 @@ fun ResultItem(item: Situation) {
             containerColor = coralPink
         ),
         modifier = Modifier
-            .padding(5.dp)
+            .padding(1.dp)
             .fillMaxWidth()
     ) {
         Text(
