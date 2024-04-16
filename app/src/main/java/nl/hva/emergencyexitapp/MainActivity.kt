@@ -25,6 +25,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -34,6 +35,7 @@ import nl.hva.emergencyexitapp.ui.theme.screens.AppScreens
 import nl.hva.emergencyexitapp.ui.theme.screens.HomeScreen
 import nl.hva.emergencyexitapp.ui.theme.screens.SearchScreen
 import nl.hva.emergencyexitapp.ui.theme.white
+import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,9 +91,9 @@ private fun AppScaffold() {
  * You can see this as a nav_graph.xml in compose environment.
  */
 @Composable
-private fun AppNavHost(
-    navController: NavHostController, modifier: Modifier
-) {
+private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
+    val viewModel: SituationViewModel = viewModel()
+
     NavHost(
         navController = navController,
         startDestination = AppScreens.HomeScreen.route,
@@ -101,7 +103,7 @@ private fun AppNavHost(
             HomeScreen(navController)
         }
         composable(route = AppScreens.SearchScreen.route) {
-            SearchScreen(navController)
+            SearchScreen(navController, viewModel)
         }
     }
 }

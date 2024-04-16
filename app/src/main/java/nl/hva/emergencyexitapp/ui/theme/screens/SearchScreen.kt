@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
@@ -22,6 +24,7 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -33,17 +36,22 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.LiveData
 import androidx.navigation.NavHostController
 import nl.hva.emergencyexitapp.R
+import nl.hva.emergencyexitapp.data.model.Situation
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.ui.theme.white
+import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 
 @Composable
-fun SearchScreen(navHostController: NavHostController) {
+fun SearchScreen(navHostController: NavHostController, viewModel: SituationViewModel) {
     //we use rememberSaveable here to let the state survive process death, remember++ so to speak
     val searchQueryState = rememberSaveable(stateSaver = TextFieldValue.Saver) {
         mutableStateOf(TextFieldValue(""))
     }
+
+    val situations = viewModel.backlog
 
 
     Column(
@@ -95,38 +103,45 @@ fun SearchScreen(navHostController: NavHostController) {
                 )
             }
 //            list of items
-            Column(modifier = Modifier.padding(10.dp)) {
-//                each button is a item
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = coralPink
-                    ),
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.situation_widget_status),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = coralPink
-                    ),
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxWidth()
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.situation_widget_status),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
+            Column {
+                Situations(items = situations, viewModel = viewModel)
             }
-
         }
+    }
+}
+
+@Composable
+fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel) {
+    // sort results by name ( a - z )
+    val situationResults = items.observeAsState().value?.sortedBy { it.title }
+
+    LazyColumn(
+        modifier = Modifier
+            .padding(8.dp),
+        verticalArrangement = Arrangement.spacedBy(1.dp)
+    ) {
+        situationResults?.let { results ->
+            items(results) { situation ->
+                ResultItem(item = situation)
+            }
+        }
+    }
+}
+
+@Composable
+fun ResultItem(item: Situation) {
+    Button(
+        onClick = { /*TODO*/ },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = coralPink
+        ),
+        modifier = Modifier
+            .padding(5.dp)
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = item.title,
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
