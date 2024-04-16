@@ -65,7 +65,9 @@ fun HomeScreen(navHostController: NavHostController) {
             }
             Row(modifier = Modifier.padding(10.dp)) {
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navHostController.navigate("${AppScreens.InstructionScreen.route}/4")
+                              },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = coralPink
                     ),

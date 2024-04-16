@@ -29,7 +29,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import nl.hva.emergencyexitapp.data.model.Situation
 import nl.hva.emergencyexitapp.ui.theme.EmergencyExitAppTheme
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.ui.theme.screens.AppScreens
@@ -108,9 +107,9 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
             SearchScreen(navController, viewModel)
         }
         composable(route = "${AppScreens.InstructionScreen.route}/{situationId}") { backStackEntry ->
-            val situationId = backStackEntry.arguments?.getInt("situationId")
-            if (situationId != null) {
-                InstructionScreen(navController, viewModel, situationId)
+            val situation = backStackEntry.arguments?.getString("situationId")
+            if (situation != null) {
+                InstructionScreen(navController, viewModel, situation.toInt()-1)
             } else {
                 // Screen will catch this error
                 InstructionScreen(navController, viewModel, -1)

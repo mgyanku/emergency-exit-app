@@ -11,10 +11,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import nl.hva.emergencyexitapp.R
+import nl.hva.emergencyexitapp.data.model.Situation
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 
@@ -25,8 +25,6 @@ fun InstructionScreen(
 ) {
 
     val backlog = viewModel.backlog
-    
-    
     val situation = backlog.value?.get(situationId)
 
     Column(
@@ -56,12 +54,12 @@ fun InstructionScreen(
                     Text(text = "Something went wrong.")
                 }
             }
-            Column (
+            Column(
                 modifier = Modifier.padding(15.dp)
             ) {
                 Button(
-                    onClick = { 
-                              navHostController.navigate(AppScreens.HomeScreen.route)
+                    onClick = {
+                        navHostController.navigate(AppScreens.HomeScreen.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = coralPink
