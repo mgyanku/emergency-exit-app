@@ -24,6 +24,7 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -52,6 +53,7 @@ fun SearchScreen(navHostController: NavHostController, viewModel: SituationViewM
     }
 
     val situations = viewModel.backlog
+
 
 
     Column(
@@ -104,16 +106,19 @@ fun SearchScreen(navHostController: NavHostController, viewModel: SituationViewM
             }
 //            list of items
             Column {
-                Situations(items = situations, viewModel = viewModel)
+                Situations(items = situations, viewModel = viewModel,
+                    searchQuery = searchQueryState.value.text)
             }
         }
     }
 }
 
 @Composable
-fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel) {
+fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel, searchQuery: String) {
     // sort results by name ( a - z )
-    val situationResults = items.observeAsState().value?.sortedBy { it.title }
+    val situationResults = items.observeAsState().value
+        ?.filter { it.title.contains(searchQuery, ignoreCase = true) }
+        ?.sortedBy { it.title }
 
     LazyColumn(
         modifier = Modifier

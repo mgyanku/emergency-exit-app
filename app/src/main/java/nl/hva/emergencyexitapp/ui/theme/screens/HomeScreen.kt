@@ -76,18 +76,6 @@ fun HomeScreen(navHostController: NavHostController) {
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = coralPink
-                    ),
-                    modifier = Modifier.padding(5.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.situation_widget_button_help),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
             }
 
         }
