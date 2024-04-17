@@ -31,6 +31,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import nl.hva.emergencyexitapp.ui.theme.EmergencyExitAppTheme
 import nl.hva.emergencyexitapp.ui.theme.coralPink
+import nl.hva.emergencyexitapp.ui.theme.screens.AddScreen
 import nl.hva.emergencyexitapp.ui.theme.screens.AppScreens
 import nl.hva.emergencyexitapp.ui.theme.screens.HomeScreen
 import nl.hva.emergencyexitapp.ui.theme.screens.InstructionScreen
@@ -115,6 +116,9 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
                 InstructionScreen(navController, viewModel, -1)
             }
         }
+        composable(route = AppScreens.AddScreen.route) {
+            AddScreen(navController, viewModel)
+        }
     }
 }
 
@@ -122,7 +126,8 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
 fun BottomNav(navController: NavHostController) {
     val items = listOf(
         AppScreens.HomeScreen,
-        AppScreens.SearchScreen)
+        AppScreens.SearchScreen,
+        AppScreens.AddScreen)
     BottomNavigation(
         modifier = Modifier,
         backgroundColor = coralPink

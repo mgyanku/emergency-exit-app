@@ -97,7 +97,7 @@ fun SearchScreen(navHostController: NavHostController, viewModel: SituationViewM
                     },
                     placeholder = {
                         Text(
-                            text = stringResource(id = R.string.search_title)
+                            text = stringResource(id = R.string.search_bar)
                         )
                     },
                     singleLine = true,

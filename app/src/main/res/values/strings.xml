@@ -2,6 +2,7 @@
     <string name="app_name">Emergency Exit App</string>
     <string name="home">Homepage</string>
     <string name="search">Search</string>
+    <string name="add">Add</string>
 
     <string name="situation_widget_title">Current Situation</string>
     <string name="situation_widget_status">Flood warning</string>
@@ -9,9 +10,12 @@
         Please take immediate precautions and ensure your safety and that of your loved ones.</string>
     <string name="situation_widget_button_instructions">Instructions</string>
     <string name="situation_widget_button_help">/?</string>
-
     <string name="speed_dial_widget_title">Speed dial</string>
-
-    <string name="search_title">Search</string>
+    <string name="search_title">Disaster Situations</string>
+    <string name="search_bar">Search</string>
+    <string name="add_summary">You can add your own situation with instruction!
+        All columns must be filled in.</string>
+    <string name="add_title">Add an instruction</string>
+    <string name="add_button">Add</string>
 
 </resources>

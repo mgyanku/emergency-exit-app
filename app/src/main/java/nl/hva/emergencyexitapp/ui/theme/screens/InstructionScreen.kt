@@ -1,6 +1,7 @@
 package nl.hva.emergencyexitapp.ui.theme.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import nl.hva.emergencyexitapp.R
 import nl.hva.emergencyexitapp.data.model.Situation
+import nl.hva.emergencyexitapp.ui.theme.black
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 
@@ -54,7 +56,7 @@ fun InstructionScreen(
                     Text(text = "Something went wrong.")
                 }
             }
-            Column(
+            Row(
                 modifier = Modifier.padding(15.dp)
             ) {
                 Button(
