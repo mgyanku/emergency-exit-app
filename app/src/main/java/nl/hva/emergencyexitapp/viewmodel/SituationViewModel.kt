@@ -39,6 +39,17 @@ class SituationViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    /**
+     * delete all situations
+     */
+    fun deleteAll() {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.deleteAll()
+            }
+        }
+    }
+
     fun insertDummyData() {
         val situation = Situation(title = "Avalanche", instruction = "Hide.")
 

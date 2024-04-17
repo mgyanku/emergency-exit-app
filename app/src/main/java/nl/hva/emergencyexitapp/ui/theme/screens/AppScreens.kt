@@ -12,4 +12,6 @@ sealed class AppScreens (
     object SearchScreen: AppScreens("search_screen", R.string.search , R.drawable.search)
     object InstructionScreen: AppScreens("instruction_screen", R.string.search , R.drawable.instruction)
     object AddScreen: AppScreens("add_screen", R.string.add , R.drawable.add)
+    object SettingsScreen: AppScreens("settings_screen", R.string.settings , R.drawable.settings)
+
 }

@@ -36,6 +36,7 @@ import nl.hva.emergencyexitapp.ui.theme.screens.AppScreens
 import nl.hva.emergencyexitapp.ui.theme.screens.HomeScreen
 import nl.hva.emergencyexitapp.ui.theme.screens.InstructionScreen
 import nl.hva.emergencyexitapp.ui.theme.screens.SearchScreen
+import nl.hva.emergencyexitapp.ui.theme.screens.SettingsScreen
 import nl.hva.emergencyexitapp.ui.theme.white
 import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 
@@ -110,7 +111,7 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         composable(route = "${AppScreens.InstructionScreen.route}/{situationId}") { backStackEntry ->
             val situation = backStackEntry.arguments?.getString("situationId")
             if (situation != null) {
-                InstructionScreen(navController, viewModel, situation.toInt()-1)
+                InstructionScreen(navController, viewModel, situation.toInt())
             } else {
                 // Screen will catch this error
                 InstructionScreen(navController, viewModel, -1)
@@ -118,6 +119,9 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         }
         composable(route = AppScreens.AddScreen.route) {
             AddScreen(navController, viewModel)
+        }
+        composable(route = AppScreens.SettingsScreen.route) {
+            SettingsScreen(navController, viewModel)
         }
     }
 }
@@ -127,7 +131,8 @@ fun BottomNav(navController: NavHostController) {
     val items = listOf(
         AppScreens.HomeScreen,
         AppScreens.SearchScreen,
-        AppScreens.AddScreen)
+        AppScreens.AddScreen,
+        AppScreens.SettingsScreen)
     BottomNavigation(
         modifier = Modifier,
         backgroundColor = coralPink

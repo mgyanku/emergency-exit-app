@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import nl.hva.emergencyexitapp.R
 import nl.hva.emergencyexitapp.ui.theme.coralPink
+import nl.hva.emergencyexitapp.ui.theme.green
 
 
 @Composable
@@ -64,7 +65,7 @@ fun HomeScreen(navHostController: NavHostController) {
                 Text(
                     text = stringResource(id = R.string.situation_widget_status),
                     style = MaterialTheme.typography.headlineSmall,
-                    color = coralPink
+                    color = green
                 )
                 Text(
                     text = stringResource(id = R.string.situation_widget_summary),
@@ -74,7 +75,7 @@ fun HomeScreen(navHostController: NavHostController) {
             Row(modifier = Modifier.padding(10.dp)) {
                 Button(
                     onClick = {
-                        navHostController.navigate("${AppScreens.InstructionScreen.route}/4")
+                        navHostController.navigate(AppScreens.SearchScreen.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = coralPink
