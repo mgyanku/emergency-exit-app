@@ -61,7 +61,7 @@ fun InstructionScreen(
             ) {
                 Button(
                     onClick = {
-                        navHostController.navigate(AppScreens.HomeScreen.route)
+                        navHostController.popBackStack()
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = coralPink

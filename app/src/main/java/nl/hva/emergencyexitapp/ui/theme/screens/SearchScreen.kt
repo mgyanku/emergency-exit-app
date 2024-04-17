@@ -136,6 +136,7 @@ fun Situations(items: LiveData<List<Situation>>, viewModel: SituationViewModel, 
 fun ResultItem(item: Situation, navHostController: NavHostController) {
     Button(
         onClick = {
+                    println(item.id)
                   navHostController.navigate("${AppScreens.InstructionScreen.route}/${item.id}")
                   },
         colors = ButtonDefaults.buttonColors(

@@ -18,4 +18,7 @@
     <string name="add_title">Add an instruction</string>
     <string name="add_button">Add</string>
 
+    <string name="empty_title">You must fill in a situation title in.</string>
+    <string name="empty_instruction">Fill in a situation instruction.</string>
+
 </resources>

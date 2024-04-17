@@ -1,5 +1,7 @@
 package nl.hva.emergencyexitapp.ui.theme.screens
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,11 +25,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import nl.hva.emergencyexitapp.R
+import nl.hva.emergencyexitapp.data.model.Situation
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 
@@ -35,6 +39,7 @@ import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 fun AddScreen(
     navHostController: NavHostController, viewModel: SituationViewModel
 ) {
+    val context = LocalContext.current
 
     var title by remember { mutableStateOf("") }
     var instruction by remember { mutableStateOf("") }
@@ -70,7 +75,13 @@ fun AddScreen(
                     keyboardType = KeyboardType.Text, modifier = Modifier
                         .fillMaxWidth())
                 Spacer(modifier = Modifier.padding(20.dp))
-                Button(onClick = { /*TODO*/ },  colors = ButtonDefaults.buttonColors(
+                Button(onClick = {
+                                 val newInstruction = verifyInput(context, title, instruction)
+                                    if(newInstruction.title.isNotEmpty()) {
+                                        viewModel.insert(newInstruction)
+                                        navHostController.popBackStack()
+                                    }
+                                 },  colors = ButtonDefaults.buttonColors(
                     containerColor = coralPink
                 ),
                     modifier = Modifier.padding(5.dp)) {
@@ -102,4 +113,20 @@ private fun CustomTextField(
         modifier = modifier,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
     )
+}
+
+private  fun verifyInput(
+    context: Context, title: String, instruction: String
+) : Situation {
+
+    if (title.isEmpty()) {
+        Toast.makeText(context, context.getText(R.string.empty_title), Toast.LENGTH_SHORT).show()
+    } else if (instruction.isEmpty()) {
+        Toast.makeText(context, context.getText(R.string.empty_instruction), Toast.LENGTH_SHORT).show()
+    }
+
+    if (title.isNotBlank() && instruction.isNotBlank()) {
+        return Situation(title, instruction)
+    }
+        return Situation("", "")
 }
