@@ -107,11 +107,12 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         }
         composable(route = AppScreens.SearchScreen.route) {
             SearchScreen(navController, viewModel)
+            println(viewModel.backlog.value)
         }
         composable(route = "${AppScreens.InstructionScreen.route}/{situationId}") { backStackEntry ->
             val situation = backStackEntry.arguments?.getString("situationId")
             if (situation != null) {
-                InstructionScreen(navController, viewModel, situation.toInt())
+                InstructionScreen(navController, viewModel, situation.toInt()-1)
             } else {
                 // Screen will catch this error
                 InstructionScreen(navController, viewModel, -1)

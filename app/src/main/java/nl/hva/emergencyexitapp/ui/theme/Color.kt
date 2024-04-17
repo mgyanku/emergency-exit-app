@@ -7,7 +7,7 @@ val coralPink = Color(0xFFD43F52)
 val babyPink = Color(0xFFF09DB6)
 val white = Color(0xFFFFFFF8)
 val black =  Color(0xFF2D2D2D)
-val green = Color(0xFF004D23)
+val green = Color(0xFF009242)
 
 
 // dark mode
