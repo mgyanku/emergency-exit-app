@@ -22,5 +22,5 @@
     <string name="empty_title">You must fill in a situation title in.</string>
     <string name="empty_instruction">Fill in a situation instruction.</string>
 
-    <string name="settings_summary">On this page you can insert or delete all the dummy data.</string>
+    <string name="settings_summary">On this page you can insert the dummy data.</string>
 </resources>

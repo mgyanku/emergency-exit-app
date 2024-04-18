@@ -62,21 +62,6 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
-                Button(
-                    onClick = {
-                    viewModel.deleteAll()
-                        navHostController.popBackStack()
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = coralPink
-                    ),
-                    modifier = Modifier.padding(5.dp)
-                ) {
-                    Text(
-                        text = "Delete all",
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
             }
         }
     }

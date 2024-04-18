@@ -14,9 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import nl.hva.emergencyexitapp.R
-import nl.hva.emergencyexitapp.data.model.Situation
-import nl.hva.emergencyexitapp.ui.theme.black
 import nl.hva.emergencyexitapp.ui.theme.coralPink
 import nl.hva.emergencyexitapp.viewmodel.SituationViewModel
 
@@ -61,7 +58,7 @@ fun InstructionScreen(
             ) {
                 Button(
                     onClick = {
-                        navHostController.popBackStack()
+                        navHostController.navigate(AppScreens.HomeScreen.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = coralPink
